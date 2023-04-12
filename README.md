@@ -10,16 +10,16 @@ To connect your VPS server, you can use your server IP, you can create a root pa
 
 1. Launch the Terminal app.
 2. ```ssh-keygen -t rsa```
-3. Press ```ENTER``` to store the key in the default folder /Users/lamadev/.ssh/id_rsa).
+3. Press ```ENTER``` to store the key in the default folder /Users/hj/.ssh/id_rsa).
 
 4. Type a passphrase (characters will not appear in the terminal).
 
 5. Confirm your passphrase to finish SSH Keygen. You should get an output that looks something like this:
 
-``` Your identification has been saved in /Users/lamadev/.ssh/id_rsa.
-Your public key has been saved in /Users/lamadev/.ssh/id_rsa.pub.
+``` Your identification has been saved in /Users/hj/.ssh/id_rsa.
+Your public key has been saved in /Users/hj/.ssh/id_rsa.pub.
 The key fingerprint is:
-ae:89:72:0b:85:da:5a:f4:7c:1f:c2:43:fd:c6:44:30 lamadev@mac.local
+ae:89:72:0b:85:da:5a:f4:7c:1f:c2:43:fd:c6:44:30 hj@mac.local
 The key's randomart image is:
 +--[ RSA 2048]----+
 |                 |
@@ -126,14 +126,14 @@ ufw allow "Nginx Full"
 
 #### First configuration
 ```
- nano /etc/nginx/sites-available/netflix
+ nano /etc/nginx/sites-available/classconnected
 ```
 ```
 server {
   listen 80;
 
   location / {
-        root /var/www/netflix;
+        root /var/www/classconnected;
         index  index.html index.htm;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
@@ -147,13 +147,13 @@ server {
 ```
 
 ```
-ln -s /etc/nginx/sites-available/netflix /etc/nginx/sites-enabled/netflix
+ln -s /etc/nginx/sites-available/classconnected /etc/nginx/sites-enabled/classconnected
 
 ```
 
 ##### Write your fist message
 ```
-nano /var/www/netflix/index.html
+nano /var/www/classconnected/index.html
 
 ```
 
@@ -170,7 +170,7 @@ apt install git
 ```
 
 ```
-mkdir netflix
+mkdir classconnected
 ```
 ```
 cd netflix
@@ -182,7 +182,7 @@ git clone <your repository>
 
 ## Nginx Configuration for new apps
 ```
-nano /etc/nginx/sites-available/netflix
+nano /etc/nginx/sites-available/classconnected
 ```
 ```
 location /api {
@@ -255,20 +255,20 @@ npm run build
 Right now, we should move this build file into the main web file
 
 ```
-rm -rf /var/www/netflix/*
+rm -rf /var/www/classconnected/*
 ```
 ```
-mkdir /var/www/netflix/client
+mkdir /var/www/classconnected/client
 ```
 
 ```
-cp -r build/* /var/www/netflix/client
+cp -r build/* /var/www/classconnected/client
 ```
 
 Let's make some server configuration
 ```
  location / {
-        root /var/www/netflix/client/;
+        root /var/www/classconnected/client/;
         index  index.html index.htm;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
@@ -290,10 +290,10 @@ Let's make some server configuration
 ```
 server {
  listen 80;
- server_name safakkocaoglu.com www.safakkocaoglu.com;
+ server_name classconnected.online www.classconnected.online;
 
 location / {
- root /var/www/netflix/client;
+ root /var/www/classconnected/client;
  index  index.html index.htm;
  proxy_http_version 1.1;
  proxy_set_header Upgrade $http_upgrade;
@@ -306,7 +306,7 @@ location / {
 
 server {
   listen 80;
-  server_name api.safakkocaoglu.com;
+  server_name api.classconnected.online;
   location / {
     proxy_pass http://45.90.108.107:8800;
     proxy_http_version 1.1;
@@ -319,9 +319,9 @@ server {
 
 server {
   listen 80;
-  server_name admin.safakkocaoglu.com;
+  server_name admin.classconnected.online;
   location / {
-    root /var/www/netflix/admin;
+    root /var/www/classconnected/admin;
     index  index.html index.htm;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;

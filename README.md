@@ -173,7 +173,7 @@ apt install git
 mkdir classconnected
 ```
 ```
-cd netflix
+cd classconnected
 ```
 
 ```
